@@ -24,11 +24,11 @@ func (s Service) AddHandler(command string, handler func(server.ClientListener, 
 }
 
 func (s Service) HandleCommand(c server.ClientListener, message string) {
-	if s.HandleCommandMethod != nil {
-		s.HandleCommandMethod(s, c, message)
+	if s.HandleCommandMethod == nil {
+		s.defaultCommandHandler(c, message)
 		return
 	}
-	s.defaultCommandHandler(c, message)
+	s.HandleCommandMethod(s, c, message)
 }
 
 func (s Service) defaultCommandHandler(c server.ClientListener, message string) {
@@ -43,11 +43,11 @@ func (s Service) defaultCommandHandler(c server.ClientListener, message string) 
 			return
 		}
 	}
-	val, ok := s.RequestHandlers[cmd]
+	handler, ok := s.RequestHandlers[cmd]
 
 	if !ok {
 		c.SendError("invalid command " + cmd)
 		return
 	}
-	val(c, args)
+	handler(c, args)
 }

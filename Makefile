@@ -8,3 +8,5 @@ server-run:
 
 server-build:
 	@docker build -t server .
+
+.PHONY: server-run server-build default
