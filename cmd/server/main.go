@@ -18,7 +18,7 @@ func init() {
 }
 
 func main() {
-	serv := service.CreateService(handler.TestProtocol, handler.TestHandler)
+	serv := service.NewService(handler.TestProtocol, handler.TestHandler)
 
 	serv.AddHandler("time", handler.TimeHandler)
 	serv.AddHandler("print", handler.PrintHandler)

@@ -1,7 +1,8 @@
 package handler
 
 import (
-	mock_main "github.com/golang/mock/gomock"
+	mock "github.com/aIexmoran/simpletcp/src/handler/mock"
+	"github.com/golang/mock/gomock"
 	"testing"
 )
 
@@ -11,7 +12,7 @@ var tests = []struct {
 	{
 		[]string{"1%s%s%s", "2", "3", "45"},
 	},
-	{w
+	{
 		[]string{"1%s%s", "2", "34"},
 	},
 	{
@@ -26,7 +27,7 @@ func TestPrintHandler(t *testing.T) {
 	ctrl := gomock.NewController(t)
 	defer ctrl.Finish()
 
-	mockObj := mock_main.NewMockClientListenerInterface(ctrl)
+	mockObj := mock.NewMockClientListenerInterface(ctrl)
 	mockObj.EXPECT().SendMessage("12345")
 	mockObj.EXPECT().SendMessage("1234")
 	mockObj.EXPECT().SendMessage("123")

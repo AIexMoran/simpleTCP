@@ -20,19 +20,19 @@ func TestProtocol(message string) (string, []string, error) {
 func TestHandler(s service.Service, c server.ClientListener, message string) {
 	fmt.Println("This is custom handler")
 	if len(message) > 30 {
-		s.SendError(c, "Too many bytes!")
+		c.SendError("Too many bytes")
 		return
 	}
 	cmd, args, err := s.ProtocolMethod(message)
 
 	if err != nil {
-		s.SendError(c, err.Error())
+		c.SendError(err.Error())
 		return
 	}
 	val, ok := s.RequestHandlers[cmd]
 
 	if !ok {
-		s.SendError(c, "invalid command "+cmd)
+		c.SendError("invalid command " + cmd)
 		return
 	}
 	val(c, args)

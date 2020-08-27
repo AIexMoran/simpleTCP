@@ -15,6 +15,10 @@ func (c Client) SendMessage(message string) {
 	c.Writer.Flush()
 }
 
+func (c Client) SendError(message string) {
+	c.SendMessage("Error:" + message)
+}
+
 func (c Client) ReadMessage() (string, bool) {
 	message, err := c.Reader.ReadString('\n')
 

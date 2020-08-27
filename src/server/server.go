@@ -9,12 +9,12 @@ import (
 
 type ClientListener interface {
 	SendMessage(string)
+	SendError(string)
 	ReadMessage() (string, bool)
 }
 
 type RequestHandler interface {
 	HandleCommand(ClientListener, string)
-	SendError(ClientListener, string)
 }
 
 func handleClient(conn net.Conn, handler RequestHandler) {
