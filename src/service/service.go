@@ -19,10 +19,12 @@ func NewService(protocol func(string) (string, []string, error),
 	}
 }
 
+//Adds handler for command
 func (s Service) AddHandler(command string, handler func(server.ClientListener, []string)) {
 	s.RequestHandlers[command] = handler
 }
 
+//Handles command from parsed client's message
 func (s Service) HandleCommand(c server.ClientListener, message string) {
 	if s.HandleCommandMethod == nil {
 		s.defaultCommandHandler(c, message)

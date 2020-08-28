@@ -10,15 +10,18 @@ type Client struct {
 	Reader *bufio.Reader
 }
 
+//Sends message to client
 func (c Client) SendMessage(message string) {
 	c.Writer.WriteString(message + "\n")
 	c.Writer.Flush()
 }
 
+//Sends error to client
 func (c Client) SendError(message string) {
 	c.SendMessage("Error:" + message)
 }
 
+//Reads message from client
 func (c Client) ReadMessage() (string, bool) {
 	message, err := c.Reader.ReadString('\n')
 

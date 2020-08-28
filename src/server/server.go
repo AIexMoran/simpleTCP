@@ -33,6 +33,7 @@ func handleClient(conn net.Conn, handler RequestHandler) {
 	}
 }
 
+//Listens on the protocol, port
 func ListenAndHandle(handler RequestHandler, protocol, port string) error {
 	ln, err := net.Listen(protocol, port)
 
