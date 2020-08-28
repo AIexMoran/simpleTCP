@@ -3,3 +3,4 @@ Makefile
 .dockerignore
 README.md
 .env
+cmd/client
