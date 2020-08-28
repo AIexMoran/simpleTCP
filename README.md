@@ -1,9 +1,9 @@
 # simpleTCP
-###Installation
+### Installation
 >**1. git clone https://github.com/AIexMoran/simpleTCP**   
 >**2. make**
 
-###Make rules
+### Make rules
 >**client-build: creates client binary**  
 >**client-run: runs client binary**  
 >**server-build: creates docker image of server**  
